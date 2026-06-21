@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAELUM TIERS - History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        .history-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .history-card {
+            background-color: #1a1b1e;
+            border: 1px solid rgba(39, 39, 42, 0.5);
+            padding: 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: slideUpFade 0.5s ease-out backwards;
+            transition: all 0.3s ease;
+        }
+        .history-card:hover {
+            background-color: #27272a;
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .history-info h3 {
+            font-size: 20px;
+            color: var(--text-foreground);
+            margin-bottom: 4px;
+        }
+        .history-info p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .history-result {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fbbf24;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+        }
+        .empty-history {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-top: 48px;
+            padding: 48px;
+            background: rgba(39, 39, 42, 0.2);
+            border-radius: 12px;
+            border: 1px dashed rgba(161, 161, 170, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" style="display: flex; align-items: center; gap: 12px;">
+                <div class="caelum-logo">
+                    <span class="caelum-text">CAELUM</span>
+                    <span class="tiers-text">TIERS</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="history.html" class="active">Rankings History</a></li>
+            </ul>
+            <div class="search-container" style="visibility: hidden;">
+                <input type="text">
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="board-container" style="margin-top: 48px;">
+            <div class="info-bar">
+                <div class="server-info">
+                    <span class="server-label">SERVER IP</span>
+                    <span class="server-ip">mc.solitude.su</span>
+                </div>
+            </div>
+
+            <div class="history-container" id="historyContainer">
+                <!-- History will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        Caelum Tiers &copy; 2026. Custom Ranked System.
+    </footer>
+
+    <script src="history.js"></script>
+    <script>
+        const container = document.getElementById('historyContainer');
+        if (victoryHistory.length === 0) {
+            container.innerHTML = `
+                <div class="empty-history">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 16px; opacity: 0.5;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <br>
+                    Пока что история побед пуста.<br>Здесь будут отображаться величайшие победы игроков!
+                </div>
+            `;
+        } else {
+            victoryHistory.forEach((record, index) => {
+                const card = document.createElement('div');
+                card.className = 'history-card';
+                card.style.setProperty('--index', index);
+                card.innerHTML = `
+                    <div class="history-info">
+                        <h3>🏆 ${record.player}</h3>
+                        <p>Турнир: <b>${record.tournament}</b> • Дата: ${record.date}</p>
+                    </div>
+                    <div class="history-result">
+                        ${record.result}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
