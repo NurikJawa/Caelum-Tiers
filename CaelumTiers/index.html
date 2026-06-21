@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCTIERS - Friends Rankings</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo" style="display: flex; align-items: center; gap: 12px;">
+                <div class="caelum-logo">
+                    <span class="caelum-text">CAELUM</span>
+                    <span class="tiers-text">TIERS</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="history.html">Rankings History</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search player...">
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="board-container">
+            <div class="tabs-section" id="tabsContainer">
+                <!-- Tabs -->
+            </div>
+
+            <div class="info-bar">
+                <button class="info-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    Information
+                </button>
+                <div class="server-info">
+                    <span class="server-label">SERVER IP</span>
+                    <span class="server-ip">mc.solitude.su</span>
+                </div>
+            </div>
+
+            <div class="table-header" id="tableHeader">
+                <div class="col-rank" style="width: 64px;">#</div>
+                <div class="col-player" style="flex: 1;">PLAYER</div>
+                <div class="col-region" style="width: 80px; text-align: right;">REGION</div>
+                <div class="col-tiers" style="width: 400px; text-align: center;">TIERS</div>
+            </div>
+
+            <div class="table-body" id="leaderboardBody">
+                <!-- Rows -->
+            </div>
+
+            <div class="tiers-grid" id="tiersGrid" style="display: none;">
+                <!-- Grid columns will go here -->
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="playerModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="modal-header">
+                <div class="mc-3d-head modal-3d-head" id="modalSkin" style="--skin-url: url('https://minotar.net/skin/Steve');">
+                    <div class="mc-3d-face mc-front"></div>
+                    <div class="mc-3d-face mc-right"></div>
+                    <div class="mc-3d-face mc-top"></div>
+                    <div class="mc-3d-face mc-front-hat" style="opacity: 0.9;"></div>
+                    <div class="mc-3d-face mc-right-hat" style="opacity: 0.9;"></div>
+                    <div class="mc-3d-face mc-top-hat" style="opacity: 0.9;"></div>
+                </div>
+                <div class="modal-header-text">
+                    <h2 id="modalName" style="font-size: 32px; font-weight: 900; margin-bottom: 4px;">Name</h2>
+                    <div class="player-subtitle" style="font-size: 16px;">
+                        <img id="modalSubtitleIcon" class="subtitle-icon" style="width: 20px; height: 20px;" src="" alt="">
+                        <span id="modalSubtitleText">Subtitle</span>
+                        <span id="modalRegion" class="region-badge" style="margin-left: 12px;">EU</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="modalTestResults" style="display: none; margin-bottom: 24px;"></div>
+                
+                <h3 style="margin-bottom: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">Все тиры</h3>
+                <div class="modal-tiers" id="modalTiers" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px;"></div>
+                
+                <h3 style="margin-bottom: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">История побед</h3>
+                <div class="modal-history" id="modalHistory" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>Copyrights © CaelumTiers 2026</div>
+    </footer>
+
+    <script src="history.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
